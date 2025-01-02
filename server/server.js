@@ -82,10 +82,18 @@ const createInitialData = async () => {
   }
 };
 
-mongoose.connect(process.env.MONGODB_URI).then(() => {
-  console.log('MongoDB connected successfully');
-  createInitialData();
-});
+mongoose
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    ssl: true,
+    tlsAllowInvalidCertificates: false,
+    tlsAllowInvalidHostnames: false,
+  })
+  .then(() => {
+    console.log('MongoDB connected successfully');
+    createInitialData();
+  });
 
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/chats', require('./routes/chats'));
