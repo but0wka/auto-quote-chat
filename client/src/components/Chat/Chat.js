@@ -89,7 +89,7 @@ function Chat({
       // Оновлюємо повідомлення
       try {
         const response = await fetch(
-          `http://localhost:5000/api/messages/${chat._id}/${editingMessage._id}`,
+          `${process.env.REACT_APP_SERVER_URL}/api/messages/${chat._id}/${editingMessage._id}`,
           {
             method: 'PUT',
             headers: {
@@ -121,7 +121,7 @@ function Chat({
 
       try {
         const response = await fetch(
-          `http://localhost:5000/api/messages/${chat._id}`,
+          `${process.env.REACT_APP_SERVER_URL}/api/messages/${chat._id}`,
           {
             method: 'POST',
             headers: {
@@ -148,7 +148,7 @@ function Chat({
               }
 
               const quoteResponse = await fetch(
-                `http://localhost:5000/api/quotes`,
+                `${process.env.REACT_APP_SERVER_URL}/api/quotes`,
                 {
                   headers: {
                     Authorization: `Bearer ${token}`,
@@ -165,7 +165,7 @@ function Chat({
               const quoteData = await quoteResponse.json();
 
               const botResponse = await fetch(
-                `http://localhost:5000/api/messages/${chat._id}`,
+                `${process.env.REACT_APP_SERVER_URL}/api/messages/${chat._id}`,
                 {
                   method: 'POST',
                   headers: {
@@ -202,7 +202,7 @@ function Chat({
                 ];
 
               const botResponse = await fetch(
-                `http://localhost:5000/api/messages/${chat._id}`,
+                `${process.env.REACT_APP_SERVER_URL}/api/messages/${chat._id}`,
                 {
                   method: 'POST',
                   headers: {
@@ -244,7 +244,7 @@ function Chat({
   const updateMessagesReadStatus = async (updatedChat) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/chats/${chat._id}/messages/read`,
+        `${process.env.REACT_APP_SERVER_URL}/api/chats/${chat._id}/messages/read`,
         {
           method: 'PUT',
           headers: {
@@ -262,11 +262,14 @@ function Chat({
       const updatedChatData = await response.json();
 
       // Оновлюємо список чатів
-      const chatsResponse = await fetch('http://localhost:5000/api/chats', {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      });
+      const chatsResponse = await fetch(
+        `${process.env.REACT_APP_SERVER_URL}/api/chats`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      );
 
       if (chatsResponse.ok) {
         const updatedChats = await chatsResponse.json();
@@ -287,7 +290,7 @@ function Chat({
   const markMessagesAsRead = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/chats/${chat._id}/messages/read`,
+        `${process.env.REACT_APP_SERVER_URL}/api/chats/${chat._id}/messages/read`,
         {
           method: 'PUT',
           headers: {
@@ -302,11 +305,14 @@ function Chat({
       }
 
       // Оновлюємо список чатів
-      const chatsResponse = await fetch('http://localhost:5000/api/chats', {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      });
+      const chatsResponse = await fetch(
+        `${process.env.REACT_APP_SERVER_URL}/api/chats`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      );
 
       if (chatsResponse.ok) {
         const updatedChats = await chatsResponse.json();
@@ -343,7 +349,7 @@ function Chat({
       const markMessagesAsRead = async () => {
         try {
           const response = await fetch(
-            `http://localhost:5000/api/chats/${chat._id}/messages/read`,
+            `${process.env.REACT_APP_SERVER_URL}/api/chats/${chat._id}/messages/read`,
             {
               method: 'PUT',
               headers: {

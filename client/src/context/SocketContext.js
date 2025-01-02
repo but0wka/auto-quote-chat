@@ -8,7 +8,7 @@ export function SocketProvider({ children }) {
   const [isAutoMode, setIsAutoMode] = useState(false);
 
   useEffect(() => {
-    const newSocket = io('http://localhost:5000');
+    const newSocket = io(process.env.REACT_APP_SERVER_URL);
     setSocket(newSocket);
 
     return () => newSocket.close();

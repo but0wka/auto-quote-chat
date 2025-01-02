@@ -7,11 +7,16 @@ require('dotenv').config();
 const User = require('./models/User');
 const Chat = require('./models/Chat');
 
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://auto-quote-chat.netlify.app',
+];
+
 const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: 'http://localhost:3000',
+    origin: allowedOrigins,
     methods: ['GET', 'POST'],
   },
 });
@@ -24,7 +29,7 @@ app.use((req, res, next) => {
 
 app.use(
   cors({
-    origin: ['http://localhost:3000'],
+    origin: allowedOrigins,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,

@@ -30,11 +30,14 @@ function App() {
 
   const fetchUserProfile = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/auth/profile', {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_SERVER_URL}/api/auth/profile`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      );
       if (response.ok) {
         const userData = await response.json();
         setUser(userData);
@@ -66,11 +69,14 @@ function App() {
       const token = localStorage.getItem('token');
       if (!token) return;
 
-      const response = await fetch('http://localhost:5000/api/chats', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_SERVER_URL}/api/chats`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       const data = await response.json();
       setChats(data);
 
@@ -101,7 +107,7 @@ function App() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/chats/${selectedChat._id}`,
+        `${process.env.REACT_APP_SERVER_URL}/api/chats/${selectedChat._id}`,
         {
           method: 'DELETE',
           headers: {
@@ -133,14 +139,17 @@ function App() {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/chats', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-        body: JSON.stringify(newChat),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_SERVER_URL}/api/chats`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+          body: JSON.stringify(newChat),
+        }
+      );
 
       if (response.ok) {
         const createdChat = await response.json();
@@ -167,7 +176,7 @@ function App() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/chats/${chatId}`,
+        `${process.env.REACT_APP_SERVER_URL}/api/chats/${chatId}`,
         {
           method: 'PUT',
           headers: {
@@ -212,7 +221,7 @@ function App() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/messages/${chatId}`,
+        `${process.env.REACT_APP_SERVER_URL}/api/messages/${chatId}`,
         {
           method: 'POST',
           headers: {
@@ -293,16 +302,19 @@ function App() {
         return;
       }
 
-      const response = await fetch('http://localhost:5000/api/auth/google', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          credential: credentialResponse.credential,
-        }),
-        credentials: 'include',
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_SERVER_URL}/api/auth/google`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            credential: credentialResponse.credential,
+          }),
+          credentials: 'include',
+        }
+      );
 
       const data = await response.json();
 
