@@ -20,6 +20,7 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showLoginDialog, setShowLoginDialog] = useState(false);
   const [user, setUser] = useState(null);
+  const [showMobileChat, setShowMobileChat] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -332,11 +333,20 @@ function App() {
     }
   };
 
+  const handleMobileChatSelect = (chat) => {
+    setSelectedChat(chat);
+    setShowMobileChat(true);
+  };
+
+  const handleBackToList = () => {
+    setShowMobileChat(false);
+  };
+
   return (
     <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
       <SocketProvider>
         <div className='app'>
-          <div className='sidebar'>
+          <div className={`sidebar ${showMobileChat ? 'mobile-hidden' : ''}`}>
             <div className='sidebar-header'>
               <div className='user-profile'>
                 {isAuthenticated ? (
@@ -380,15 +390,39 @@ function App() {
             {isAuthenticated ? (
               <ChatList
                 chats={filteredChats}
-                onChatSelect={setSelectedChat}
-                onCreateChat={handleCreateChat}
+                onChatSelect={
+                  window.innerWidth <= 768
+                    ? handleMobileChatSelect
+                    : setSelectedChat
+                }
                 selectedChat={selectedChat}
                 onChatsUpdate={setChats}
               />
             ) : (
               <div className='chat-list'>
                 <div className='empty-state'>
-                  <p>No chats available</p>
+                  {window.innerWidth <= 768 ? (
+                    <div className='mobile-login'>
+                      <h2>Welcome to Messenger</h2>
+                      <p>Please login to start chatting</p>
+                      <div className='google-login-container'>
+                        <GoogleLogin
+                          onSuccess={handleGoogleSuccess}
+                          onError={(error) => {
+                            console.error('Login Failed:', error);
+                            toast.error('Login failed');
+                          }}
+                          useOneTap={false}
+                          theme='outline'
+                          size='large'
+                          text='signin_with'
+                          shape='rectangular'
+                        />
+                      </div>
+                    </div>
+                  ) : (
+                    <p>No chats available</p>
+                  )}
                 </div>
                 <div className='github-badge'>
                   <a
@@ -413,7 +447,9 @@ function App() {
               </div>
             )}
           </div>
-          <div className='main-content'>
+          <div
+            className={`main-content ${showMobileChat ? 'mobile-visible' : ''}`}
+          >
             {isAuthenticated ? (
               selectedChat ? (
                 <Chat
@@ -423,6 +459,10 @@ function App() {
                   onChatUpdate={handleChatUpdate}
                   onChatDelete={handleChatDelete}
                   onChatsUpdate={setChats}
+                  onBackClick={
+                    window.innerWidth <= 768 ? handleBackToList : undefined
+                  }
+                  isMobile={window.innerWidth <= 768}
                 />
               ) : (
                 <div className='no-chat-selected'>

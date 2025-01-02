@@ -26,3 +26,10 @@
   gap: 16px;
   margin-bottom: 24px;
 }
+
+@media (max-width: 480px) {
+  .login-dialog {
+    width: 90%;
+    padding: 16px;
+  }
+}

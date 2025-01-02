@@ -8,6 +8,7 @@ import {
   MdDelete,
   MdCheck,
   MdClose,
+  MdArrowBack,
 } from 'react-icons/md';
 import { format } from 'date-fns';
 import { getAvatarUrl } from '../../config/avatar';
@@ -23,6 +24,8 @@ function Chat({
   onChatDelete,
   onBotResponse,
   onChatsUpdate,
+  onBackClick,
+  isMobile,
 }) {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
@@ -378,6 +381,11 @@ function Chat({
   return (
     <div className='chat'>
       <div className='chat-header'>
+        {isMobile && (
+          <button className='back-btn' onClick={onBackClick}>
+            <MdArrowBack size={24} />
+          </button>
+        )}
         <div className='chat-header-info'>
           <div className='chat-avatar'>
             <img

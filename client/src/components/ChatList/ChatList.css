@@ -145,3 +145,18 @@
 .github-card:hover .github-logo {
   opacity: 0.7;
 }
+
+@media (max-width: 768px) {
+  .chat-item {
+    padding: 8px 12px;
+  }
+
+  .chat-item-avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .github-badge {
+    padding: 12px;
+  }
+}
