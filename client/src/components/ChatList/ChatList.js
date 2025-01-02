@@ -149,19 +149,6 @@ function ChatList({ chats, onChatSelect, selectedChat, onChatsUpdate }) {
               />
               <span className='github-repo-name'>but0wka/auto-quote-chat</span>
             </div>
-            <div className='github-card-body'>
-              <p className='github-description'>
-                Real-time chat application with automatic quote generation
-              </p>
-              <div className='github-stats'>
-                <span>
-                  <i className='fas fa-star'></i> Stars
-                </span>
-                <span>
-                  <i className='fas fa-code-branch'></i> JavaScript
-                </span>
-              </div>
-            </div>
           </div>
         </a>
       </div>
