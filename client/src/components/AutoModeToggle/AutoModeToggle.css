@@ -1,0 +1,38 @@
+.auto-mode-toggle {
+  flex: 1;
+}
+
+.toggle-btn {
+  width: 100%;
+  height: 36px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  background-color: #88c4cd;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.toggle-btn:hover {
+  opacity: 0.9;
+}
+
+.toggle-btn.active {
+  background-color: #ff4d4f;
+}
+
+.toggle-btn:disabled {
+  background-color: #d9d9d9;
+  cursor: not-allowed;
+}
+
+.toggle-btn svg {
+  width: 20px;
+  height: 20px;
+}

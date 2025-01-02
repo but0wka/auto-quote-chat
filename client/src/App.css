@@ -1,0 +1,19 @@
+.chats-section {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.chats-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  margin-bottom: 8px;
+}
+
+.chats-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+  color: #111b21;
+}
