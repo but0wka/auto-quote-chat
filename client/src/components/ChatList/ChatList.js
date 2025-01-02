@@ -140,10 +140,29 @@ function ChatList({ chats, onChatSelect, selectedChat, onChatsUpdate }) {
           target='_blank'
           rel='noopener noreferrer'
         >
-          <img
-            src='https://img.shields.io/badge/View%20on-GitHub-lightgrey?style=for-the-badge&logo=github'
-            alt='View on GitHub'
-          />
+          <div className='github-card'>
+            <div className='github-card-header'>
+              <img
+                src='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
+                alt='GitHub'
+                className='github-logo'
+              />
+              <span className='github-repo-name'>but0wka/auto-quote-chat</span>
+            </div>
+            <div className='github-card-body'>
+              <p className='github-description'>
+                Real-time chat application with automatic quote generation
+              </p>
+              <div className='github-stats'>
+                <span>
+                  <i className='fas fa-star'></i> Stars
+                </span>
+                <span>
+                  <i className='fas fa-code-branch'></i> JavaScript
+                </span>
+              </div>
+            </div>
+          </div>
         </a>
       </div>
     </div>
