@@ -9,7 +9,7 @@ const Chat = require('./models/Chat');
 
 const allowedOrigins = [
   'http://localhost:3000',
-  'https://auto-quote-chat.netlify.app',
+  'https://auto-quote-chat-frontend.onrender.com',
 ];
 
 const app = express();
