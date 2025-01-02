@@ -89,15 +89,14 @@ const createInitialData = async () => {
 
 mongoose
   .connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
     ssl: true,
-    tlsAllowInvalidCertificates: false,
-    tlsAllowInvalidHostnames: false,
   })
   .then(() => {
     console.log('MongoDB connected successfully');
     createInitialData();
+  })
+  .catch((err) => {
+    console.error('MongoDB connection error:', err);
   });
 
 app.use('/api/auth', require('./routes/auth'));
