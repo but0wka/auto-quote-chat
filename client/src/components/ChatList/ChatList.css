@@ -94,6 +94,7 @@
   background-color: white;
   padding: 12px;
   transition: all 0.2s ease;
+  text-align: center;
 }
 
 .github-card:hover {
@@ -104,6 +105,7 @@
 .github-card-header {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
 }
 
@@ -134,4 +136,12 @@
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+.github-badge a {
+  text-decoration: none;
+}
+
+.github-card:hover .github-logo {
+  opacity: 0.7;
 }
