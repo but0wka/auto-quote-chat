@@ -133,6 +133,19 @@ function ChatList({ chats, onChatSelect, selectedChat, onChatsUpdate }) {
           </div>
         );
       })}
+
+      <div className='github-badge'>
+        <a
+          href='https://github.com/but0wka/auto-quote-chat'
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          <img
+            src='https://img.shields.io/badge/View%20on-GitHub-lightgrey?style=for-the-badge&logo=github'
+            alt='View on GitHub'
+          />
+        </a>
+      </div>
     </div>
   );
 }
